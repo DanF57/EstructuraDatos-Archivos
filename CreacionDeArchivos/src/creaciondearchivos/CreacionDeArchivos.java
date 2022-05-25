@@ -50,6 +50,32 @@ public class CreacionDeArchivos {
             
         }
     }
+    
+    public void leer(){
+        FileReader leer;
+        String cadena = "", id = "", nombre = "", correo = "";
+        BufferedReader alm;
+        try {
+            leer = new FileReader(archivo);
+            alm = new BufferedReader(leer);
+            while(cadena != null){
+                cadena = alm.readLine();
+                id = cadena;
+                
+                cadena = alm.readLine();
+                nombre = cadena;
+                
+                cadena = alm.readLine();
+                correo = cadena;
+                if(cadena != null){
+                    System.out.println(id+"\t"+nombre+"\t"+correo);
+                }
+            }
+            alm.close();
+            leer.close();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         CreacionDeArchivos obj = new CreacionDeArchivos();
@@ -58,7 +84,7 @@ public class CreacionDeArchivos {
             op = obj.menu();
             switch (op) {
                 case 1 -> obj.escribir();
-                //case 2 -> obj.leer();
+                case 2 -> obj.leer();
             }
         } while (op != 0);
     }
